@@ -1,0 +1,116 @@
+<div class="animated fadeIn">
+
+
+  <div class="card">
+    <div class="card-header">
+
+
+
+      <div class="row" style="width: 100%;height: 50%;">
+        <mat-form-field style="margin-left: 30%;width: 30%">
+
+
+          <input placeholder="Rechercher" matInput (keyup)="applyFilter($event.target.value)">
+
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="card-body">
+
+      <div class="row">
+
+
+
+        <div class="example-container mat-elevation-z8" style="width: 100%">
+
+
+
+
+
+
+
+
+
+          <mat-table #Table [dataSource]="dataSource" matSort
+            style="border: 1px solid #c2cfd6;border-collapse: collapse">
+            <ng-container matColumnDef="actions">
+              <mat-header-cell style="margin-left: 2%" *matHeaderCellDef> Actions </mat-header-cell>
+              <mat-cell *matCellDef="let post">
+               
+                <a [routerLink]="['/conducteur/update',post.conducteurId]" >
+                  <img src="assets/img/avatars/sty1.jpg" style="width: 30%;height: 30%">
+              </a>
+                <a (click)="onDelete(post.conducteurId)" style="margin-left: -10%">
+                  <img src="assets/img/avatars/delete1.png" style="width: 30%;height: 30%">
+              </a>
+
+              </mat-cell>
+
+            </ng-container>
+            <!-- For ID -->
+            <ng-container matColumnDef="cin">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Identité </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.cin}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nom">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.nom}} </mat-cell>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="prenom">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.prenom}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="sexe">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Sexe </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.sexe}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="telephone">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.telephone}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="userModification">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Usager </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{getUserNameById(post.userModification)}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dateModification">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.dateModification| date:'short'}} </mat-cell>
+            </ng-container>
+
+
+
+            <mat-header-row style="background-color: #eee" *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+
+          <!-- To paginate between pages with search -->
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+          </mat-paginator>
+        </div>
+
+
+      </div>
+
+
+      <div class="row" style="margin-top: 1% ; justify-content: center; align-items: center ;display: flex;">
+
+
+        <div class="col-sm-2 col-md-2 ">
+          <button [routerLink]="['/employe/Fiche']" type="submit" class="btn btn-block btn-primary"> <i
+              class="icon-plus"></i> Ajouter</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

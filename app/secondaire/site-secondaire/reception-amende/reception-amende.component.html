@@ -1,0 +1,111 @@
+<div class="animated fadeIn">
+
+
+    <div class="card">
+
+        <div class="card-header">
+                <div class="row" style="width: 100%;height: 50%;">
+                    <select class="form-control" class="form-control" name="site" (change)="getAmende($event)">
+                        <option value="selectionner">Sélectionner un site</option>
+                        <option value="{{site.siteId}}" *ngFor="let site of sites">{{site.nom_Site}}</option>
+                    </select>
+                </div>
+
+
+
+            <div class="row" style="width: 100%;height: 50%;">
+                <mat-form-field style="margin-left: 30%;width: 30%">
+
+
+                    <input placeholder="Rechercher" matInput (keyup)="applyFilter($event.target.value)">
+
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+
+
+
+                <div class="example-container mat-elevation-z8" style="width: 100%">
+
+                    <mat-table #Table [dataSource]="dataSource" matSort
+                        style="border: 1px solid #c2cfd6;border-collapse: collapse">
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell style="margin-left: 2%" *matHeaderCellDef> Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let post" style="margin-left: -5%">
+
+                                <button [routerLink]="['/secondaire/amende/edit',post.amendeId]"
+                                    style="  background-color: Transparent; border: none; padding: -10%" mat-icon-button
+                                    matTooltip="Edit">
+                                    <img src="assets/img/avatars/sty1.jpg" style="width: 18%;height: 15%">
+                                </button>
+                                <button
+                                    style="  background-color: Transparent; border: none ; padding:-15% ; margin-left: -18px"
+                                    mat-icon-button matTooltip="Edit" (click)="onDelete(post.amendeId)">
+                                    <img src="assets/img/avatars/delete1.png" style="width: 20%;height: 20% ; margin-left: -7%x">
+                                </button>
+
+                            </mat-cell>
+
+                        </ng-container>
+                        <!-- For ID -->
+                        <ng-container matColumnDef="Réf_Amende">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Réf Amende </mat-header-cell>
+                            <mat-cell *matCellDef="let post" style="margin-left: 6%"> {{post.num_Avis}} </mat-cell>
+                        </ng-container>
+
+
+
+
+
+
+                        <ng-container matColumnDef="Statut">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Statut </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{getStatut(post)}} </mat-cell>
+                        </ng-container>
+
+                      
+                        <ng-container matColumnDef="dlai_restant">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Délai restant </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{getDelaiRestant(post)}} </mat-cell>
+                        </ng-container>
+
+
+
+
+                        <ng-container matColumnDef="userModification">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Usager </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{user.nom}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="dateModification">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Date de modification </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.dateModification| date:'short'}} </mat-cell>
+                        </ng-container>
+
+
+
+                        <mat-header-row style="background-color: #eee" *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <!-- To paginate between pages with search -->
+                    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+                    </mat-paginator>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</div>

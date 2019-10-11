@@ -1,0 +1,215 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            Fiche Amende
+        </div>
+        <div class="card-body">
+            <form class="Amende-form" #AmendeForm="ngForm" (ngSubmit)="updateRecord(AmendeForm)">
+                <input type="hidden" name="amendeId" [value]="amende.amendeId">
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">Num Avis<span class="kv-reqd" style="color: red">*</span></label>
+                        <input type="text" class="form-control" name="num_Avis" [(ngModel)]="amende.num_Avis">
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="marque">Date avis </label>
+                        <input type="date" class="form-control" name="date_Avis" [(ngModel)]="amende.date_Avis ">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Options</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                          color: #cccccc;
+                          background-color:#24618e;
+                          width: 100%;
+                          border: 0;
+                          float: left;
+                          margin: 0px;
+                          margin-top: 0%;
+                      margin-left: 1%;">
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">cin<span class="kv-reqd" style="color: red">*</span></label>
+                        <!--  [(ngModel)]="amende.conducteurId" -->
+                        <select name="cin" class="form-control" (change)="ChangingCIN($event)">
+                            <option selected>Sélectionner un conducteur</option>
+                            <option *ngFor="let conducteur of conducteurs" [value]="conducteur.conducteurId">
+                                {{conducteur.cin}}</option>
+                        </select>
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="marque">nom conducteur </label>
+                        <input type="text" class="form-control" name="nom" [ngModel]="amende.conducteur?.nom" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="marque">Site concerné </label>
+                    <select name="siteId" class="form-control" [(ngModel)]="amende.siteId">
+
+                        <option *ngFor="let site of sites" [value]="site.siteId">{{site.nom_Site}}</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Véhicule</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                                  color: #cccccc;
+                                  background-color:#24618e;
+                                  width: 100%;
+                                  border: 0;
+                                  float: left;
+                                  margin: 0px;
+                                  margin-top: 0%;
+                              margin-left: 1%;">
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="marque">Matricule </label>
+                        <select name="vehiculeId" class="form-control" [(ngModel)]="amende.vehiculeId">
+
+                            <option *ngFor="let veh of vehicules" [value]="veh.vehiculeId">{{veh.matricule}}</option>
+                        </select>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Description d'infraction </h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                  color: #cccccc;
+                  background-color:#24618e;
+                  width: 100%;
+                  border: 0;
+                  float: left;
+                  margin: 0px;
+                  margin-top: 0%;
+              margin-left: 1%;">
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">Date<span class="kv-reqd" style="color: red">*</span></label>
+                        <input type="date" class="form-control" name="date_Infraction"
+                            [(ngModel)]="amende.date_Infraction ">
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="marque">lieu </label>
+                        <input type="text" class="form-control" name="lieu_Infraction"
+                            [(ngModel)]="amende.lieu_Infraction ">
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">Montant<span class="kv-reqd" style="color: red">*</span></label>
+                        <input type="text" class="form-control" name="montant" [(ngModel)]="amende.montant ">
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="marque">Fiche Amende </label>
+                        <input type="file" class="form-control" accept="image/*" (change)="onFileSelect($event)"
+                            name="fiche_Amende">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">Déscription<span class="kv-reqd" style="color: red">*</span></label>
+                        <input type="text" class="form-control" name="description" [(ngModel)]="amende.description ">
+
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Agent verbalisateur </h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                      color: #cccccc;
+                      background-color:#24618e;
+                      width: 100%;
+                      border: 0;
+                      float: left;
+                      margin: 0px;
+                      margin-top: 0%;
+                  margin-left: 1%;">
+
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label for="Type-Véhicule">Numéro agent<span class="kv-reqd" style="color: red">*</span></label>
+                        <input type="text" class="form-control" name="num_Agent" [(ngModel)]="amende.num_Agent ">
+
+
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="marque">Code Service </label>
+                        <input type="text" class="form-control" name="codeService_Agent"
+                            [(ngModel)]="amende.codeService_Agent ">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="marque">Signiature </label>
+                    <input type="file"  (change)="selectFile($event)">
+                </div>
+                <div class="row " style="margin-top: 8%">
+                    <div class="offset-md-2 col-4 col-sm-4 col-md-2 ">
+                        <button type="submit" class="btn btn-block btn-primary">Envoyer</button>
+                    </div>
+                    <div class="col-md-2 col-6 col-sm-4 col-md-2 ">
+                        <button type="submit" class="btn btn-block btn-primary">Sauvgarder</button>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-outline-primary"
+                            (click)="resetForm(AmendeForm)">Annuler</button>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-dark">Supprimer</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>

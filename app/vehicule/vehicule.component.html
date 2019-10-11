@@ -1,0 +1,363 @@
+<div class="animated fadeIn">
+  
+   
+  <div class="card">
+    <div class="card-header">
+      
+   
+   
+      Fiche Véhicule
+    </div>
+    <div class="card-body">
+     <form class="vehicule-form"  #vehiculeForm="ngForm"  (ngSubmit)="onSubmit(vehiculeForm)"> 
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="Type-Véhicule">Type de Véhicule<span class="kv-reqd" style="color: red">*</span></label>
+          <select  class="form-control" id="Type-Véhicule" name="Type_vehicule" #Type_vehicule="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.Type_vehicule " >
+                   
+            <option value="Voiture">Voiture </option>
+            <option value="Camion">Camion</option>
+            <option value="chariot élévateur ">Chariot élévateur </option>
+          </select>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="marque">Marque</label>
+          <input type="text" class="form-control" id="marque" name="marque" #marque="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.marque "  >
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="modele">Modéle <span class="kv-reqd" style="color: red">*</span></label>
+          <input type="text" class="form-control" id="modele" name="modele" #modele="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.modele " >
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="annee">Année du modéle <span class="kv-reqd" style="color: red">*</span></label>
+          <input type="text" class="form-control" id="annee" name="annee" #annee="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.annee "  >
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <label for="matricule">Matricule<span class="kv-reqd" style="color: red">*</span></label>
+        <input type="text" class="form-control" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.matricule " >
+        
+      </div>
+       </div>
+
+       <div class="row ">
+      <div class="form-group col-sm-8">
+        <label for="chassis">Numero de chassis</label>
+        <input type="text" class="form-control" id="chassis" name="numero_chassis" #numero_chassis="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.numero_chassis " >
+        
+      </div>
+
+       </div>
+      <div class="row">
+        
+        
+          <div class="col-sm-2">
+
+            <div class="form-group">
+              <label for="port">Nombre de porte </label>
+              <select  class="form-control" id="port" name="nombre_porte" #nombre_porte="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.nombre_porte" >
+                <option value="1">1</option>   
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+               
+              </select>
+            </div>
+            </div>
+        
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label for="place">Nombre de place </label>
+                <select  class="form-control" id="place" name="Nombre_place" #Nombre_place="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.Nombre_place">
+                   
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+            </div>
+        </div>
+        
+           
+      </div>
+      <div class="row">
+        <div class="title"><h5 style="color:#24618e; margin-left: 2%;width: 100%">Options</h5></div>
+   
+        <hr style="height: 1px;
+        color: #cccccc;
+        background-color:#24618e;
+        width: 100%;
+        border: 0;
+        float: left;
+        margin: 0px;
+        margin-top: 0%;
+    margin-left: 1%;">
+       
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="carburant">Type de Carburant<span class="kv-reqd" style="color: red">*</span></label>
+          <select  class="form-control" id="carburant" name="type_Carburent" #type_Carburent="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.type_Carburent">
+                   
+            <option value="Hybride">Hybride </option>
+            <option value="Essence">Essence</option>
+            <option value="Électrique">Électrique</option>
+            <option value="Diesel">Diesel</option>
+          </select>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="Transmission">Transmission</label>
+          <select  class="form-control" id="Transmission" name="transmission" #transmission="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.transmission">
+                   
+              <option value="Manuelle">Manuelle </option>
+              <option value="Automatique">Automatique</option>
+              
+            </select>
+        </div>
+      </div>
+      <div class="row ">
+          <div class="form-group col-sm-8">
+            <label for="puissance">Puissance</label>
+            <input type="text" class="form-control" id="puissance" name="puissance" #puissance="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.puissance">
+            
+          </div>
+   
+
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="city">kilométrage<span class="kv-reqd" style="color: red">*</span></label>
+          <input type="text" class="form-control" id="kilometrage" name="kilometrage" #kilometrage="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.kilometrage" >
+        </div>
+        <div class="form-group col-sm-4">
+          <label kilometrage="postal-code">Nombre de chevaux</label>
+          <input type="text" class="form-control" id="nombre_Chevaux" name="nombre_Chevaux" #nombre_Chevaux="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.nombre_Chevaux" >
+        </div>
+      </div>
+      <!--Image-->
+      <div class="row">
+        <div class="title"><h5 style="color:#24618e; margin-left: 2%;width: 100%">Documents</h5></div>
+   
+        <hr style="height: 1px;
+        color: #cccccc;
+        background-color:#24618e;
+        width: 100%;
+        border: 0;
+        float: left;
+        margin: 0px;
+        margin-top: 0%;
+    margin-left: 1%;">
+       
+    </div>
+    
+    <table class="table table-bordered table-sm" style="margin-top: 3%">
+      <thead>
+        <tr class="text-center">
+            <th>Titre </th>
+          <th>Type de fichier </th>
+          <th>Télécharger </th>
+         
+          
+          <th style="width:10%" class="text-center">
+          </th>
+      </tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td> 
+        <input type="text" class="form-control" id="titre" name="titre" #titre="ngModel" [(ngModel)]="vehiculeservice.selectedVehicule.file.titre" >
+      </td>
+        <td>
+          <select class="form-control" name="choix" [(ngModel)]="vehiculeservice.selectedVehicule.file.choix">
+
+            <option value="Carte grise">Carte grise</option>
+            <option value="Bon de livraison">Bon de livraison</option>
+            <option value="certificat de conformité ">certificat de conformité </option>
+            <option value="certificat de mise en service">certificats de mise en service </option>
+            <option value="Document douanier">Document douanier</option>
+          </select>
+      </td>
+    <td>
+      <input  type="file" class="form-control" name="documents" accept="*/*" name="profile" (change)="onFileSelect($event)"
+      class="form-control-file" id="exampleFormControlFile1" >
+  
+    </td>
+    
+    <td>
+
+      <button type="button" class="btn btn-block btn-primary" style="margin-top: 2%" (click)="addNewRowdoc()"><i class="icon-plus"></i> Ajouter</button>
+    
+    
+    </td>
+    </tr>
+    <tr *ngFor="let item of list_documents let i=index ">
+        
+        <td>{{item.titre}}</td>
+        <td>{{item.choix}}</td>
+        <td> 
+          <input type="button" (click)="viewPDF(item.fichier)" value="view PDF">
+        </td>
+        
+        <td class="text-center">
+            <h5>
+               
+               <button (click)="delete_doc_Row(item.documentId)"> <i class="fa fa-close delete-color" ></i> </button>
+            </h5>
+        </td>
+    </tr>
+    
+      </tbody>
+      </table>
+      <!---->
+      
+      <div class="row">
+          <div class="title"><h5 style="color:#24618e; margin-left: 2%;width: 100%">Affectation</h5></div>
+     
+          <hr style="height: 1px;
+          color: #cccccc;
+          background-color:#24618e;
+          width: 100%;
+          border: 0;
+          float: left;
+          margin: 0px;
+          margin-top: 0%;
+      margin-left: 1%;">
+         
+      </div>
+
+
+<!---->
+  
+  
+   <table class="table table-bordered table-sm" style="margin-top: 3%">
+    <thead>
+      <tr class="text-center">
+        <th>Nom site</th>
+        <th>Nom Conducteur</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th style="width:10%" class="text-center">
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr> 
+      <td>
+        <select name="siteId" class="form-control"
+            [(ngModel)]="vehiculeservice.selectedVehicule.vehicule_employee.siteId">
+
+            <option *ngFor="let site of sites" [value]="site.siteId">{{site.nom_Site}}</option>
+        </select>
+    </td>
+    
+    <td>
+      <select class="form-control" name="employeeId" [(ngModel)]="vehiculeservice.selectedVehicule.vehicule_employee.conducteurId ">
+
+        <option *ngFor="let emp of conducteurs" [value]="emp.conducteurId">{{emp.nom}}</option>
+
+          
+      </select>
+  </td>
+ 
+<td>
+  <input name="datedebut" type="date" class="form-control"
+      [(ngModel)]="vehiculeservice.selectedVehicule.vehicule_employee.date_debut">
+
+</td>
+<td>
+ 
+  <input name="datefin" class="form-control" type="date"
+      [(ngModel)]="vehiculeservice.selectedVehicule.vehicule_employee.date_fin">
+
+
+</td>
+<td>
+
+  <button type="button" class="btn btn-block btn-primary" style="margin-top: 2%" (click)="addNewRow()"> <i class="icon-plus"></i>Ajouter</button>
+
+
+</td>
+    </tr>
+    <tr *ngFor="let item of list_employe_site_vehicule let i=index ">
+      <td>{{ getSiteNameById(item.siteId) }} </td>
+      <td>{{ getconducteurNameById(item.conducteurId) }}</td>
+     <!-- <td>{{item.nom}}</td>-->
+      <td> {{item.date_debut| date:'dd/MM/yyyy'}}</td>
+      <td>{{item.date_fin| date:'dd/MM/yyyy'}}</td>
+      <td class="text-center">
+          <h5>
+             
+             <button (click)="deleteRow(item.id)"> <i class="fa fa-close delete-color" ></i> </button>
+          </h5>
+      </td>
+  </tr>
+    </tbody>
+  </table>
+
+ <!---->
+  <div class="row">
+    <div class="title"><h5 style="color:#24618e; margin-left: 2%;width: 100%">Contrat</h5></div>
+
+    <hr style="height: 1px;
+    color: #cccccc;
+    background-color:#24618e;
+    width: 100%;
+    border: 0;
+    float: left;
+    margin: 0px;
+    margin-top: 0%;
+margin-left: 1%;">
+   
+</div>
+   <div class="row" style="margin-top: 3%">
+    <div class="form-group col-sm-4">
+      <label for="contrat">Type de Contrat<span class="kv-reqd" style="color: red">*</span></label>
+      <select  class="form-control" id="contrat" name="type" #type="ngModel" [(ngModel)]="vehiculeservice.selectedcontrat.type"  >
+               
+        <option value="Location">Location </option>
+        <option value="Vente">Vente</option>
+        
+      </select>
+    </div>
+    <div class="form-group col-sm-4">
+      <label for="Transmission">Fournisseur</label>
+      <input type="text" class="form-control" id="fournissseur" name="fournissseur" #fournissseur="ngModel" [(ngModel)]="vehiculeservice.selectedcontrat.fournissseur" >
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-4">
+      <label for="contrat">Date début<span class="kv-reqd" style="color: red">*</span></label>
+      <input type="date" class="form-control" id="date_Debut" name="date_Debut" #date_Debut="ngModel"
+      [(ngModel)]="vehiculeservice.selectedcontrat.date_Debut">
+    </div>
+    <div class="form-group col-sm-4">
+      <label for="Transmission">Date fin</label>
+      <input  type="date" class="form-control" id="date_Fin" name="date_Fin" #date_Fin="ngModel"
+      [(ngModel)]="vehiculeservice.selectedcontrat.date_Fin">
+    </div>
+  </div>
+
+
+      <div class="row "  style="margin-top: 8%">
+        <div class="offset-md-3 col-6 col-sm-4 col-md-2 ">
+            <button type="submit" class="btn btn-block btn-primary" >Sauvgarder</button>
+          </div>
+          <div class="col-6 col-sm-4 col-md-2 ">
+              <button type="button" class="btn btn-block btn-outline-primary"(click)="resetForm(siteForm)">Annuler</button>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2 ">
+                <button type="button" class="btn btn-block btn-dark" (click)="onDelete(post.vehiculeId)">Supprimer</button>
+              </div>
+    </div>
+    </form>
+  
+  </div>
+  
+   
+
+</div>

@@ -1,0 +1,191 @@
+<!-- <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">-->
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <div class="row" style="width: 100%;height: 50%;">
+                <mat-form-field style="margin-left: 35%;width: 30%">
+                    <input placeholder="Rechercher" matInput (keyup)="applyFilter($event.target.value)">
+
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+
+
+
+                <div class="example-container mat-elevation-z8" style="width: 100%">
+
+                    <mat-table #Table [dataSource]="dataSource" matSort
+                        style="border: 1px solid #c2cfd6;border-collapse: collapse">
+
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef style="margin-left: 2%"> Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let post">
+                                <a (click)="isCollapsed = !isCollapsed" (click)="populateForm(post)">
+                                    <img src="assets/img/avatars/sty1.jpg" style="width: 20%;height: 20%  ">
+                                </a>
+
+                                <a (click)="onDelete(post.siteId)" style="margin-left: -25%">
+                                    <img src="assets/img/avatars/delete1.png" style="width: 20%;height: 20% ">
+                                </a>
+
+                            </mat-cell>
+
+                        </ng-container>
+                        <!-- For ID -->
+                        <ng-container matColumnDef="code_Site">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Code site </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.code_Site}} </mat-cell>
+                        </ng-container>
+
+                        <!-- For Post ID -->
+                        <ng-container matColumnDef="nom_Site">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Nom site </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.nom_Site}} </mat-cell>
+                        </ng-container>
+
+                        <!-- For Name -->
+                        <ng-container matColumnDef="ville">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Ville </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.ville}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="telephone">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.telephone}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="userModification">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> User </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{getUserNameById(post.userModification)}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="dateModification">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Date Modification </mat-header-cell>
+                            <mat-cell *matCellDef="let post"> {{post.dateModification| date:'short'}} </mat-cell>
+                        </ng-container>
+
+
+
+                        <mat-header-row style="background-color: #eee" *matHeaderRowDef="displayedColumns">
+                        </mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <!-- To paginate between pages with search -->
+                    <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+                    </mat-paginator>
+                </div>
+
+
+            </div>
+            <!--collapsed-->
+            <div class="card-body" style="justify-content: center; align-items: center ;display: flex;">
+                <button type="button" class="btn btn-primary" (click)="isCollapsed = !isCollapsed"> <i
+                        class="icon-plus"></i> Ajouter Site
+                </button>
+            </div>
+            <div class="card-footer" (collapsed)="collapsed($event)" (expanded)="expanded($event)"
+                [collapse]="isCollapsed">
+
+
+
+                <!---->
+
+                <div class="card-header">
+                    <strong>Information du site </strong>
+
+                </div>
+                <div class="card-body">
+                    <form class="site-form" #siteForm="ngForm" (ngSubmit)="onSubmit(siteForm)">
+
+                        <input type="hidden" name="siteId" [value]="siteservice.selectedSite.siteId">
+                        <div class="form-group">
+                            <label for="code">Code site</label>
+                            <input type="text" class="form-control" id="code" name="code_Site" #code_Site="ngModel"
+                                [(ngModel)]="siteservice.selectedSite.code_Site" required>
+                            <div class="validation-error" *ngIf="code_Site.invalid && code_Site.touched"
+                                style="color: red">This Field is Required.</div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="vat">Nom site </label>
+                            <input type="text" class="form-control" id="vat"  name="nom_Site"
+                                #nom_Site="ngModel" [(ngModel)]="siteservice.selectedSite.nom_Site" required>
+                            <div class="validation-error" *ngIf="nom_Site.invalid && nom_Site.touched"
+                                style="color: red">This Field is Required.</div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-8">
+                                <label for="city">Adresse</label>
+                                <input type="text" class="form-control" id="city" name="adresse" #adresse="ngModel"
+                                    [(ngModel)]="siteservice.selectedSite.adresse">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="postal-code">Ville</label>
+                                <input type="text" class="form-control" id="postal-code"
+                                    name="ville" #ville="ngModel" [(ngModel)]="siteservice.selectedSite.ville" required>
+                                <div class="validation-error" *ngIf="ville.invalid && ville.touched" style="color: red">
+                                    This Field is Required.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-8">
+                                <label for="city">Province</label>
+                                <input type="text" class="form-control" id="city" name="Province" #Province="ngModel"
+                                    [(ngModel)]="siteservice.selectedSite.province">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="postal-code">Code Postal</label>
+                                <input type="text" class="form-control" id="postal-code" name="code_postal"
+                                    #code_postal="ngModel" [(ngModel)]="siteservice.selectedSite.code_postal">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-8">
+                                <label for="city">Téléphone</label>
+                                <input type="text" class="form-control" id="city" name="telephone" #telephone="ngModel"
+                                    [(ngModel)]="siteservice.selectedSite.telephone" required>
+                                    <div class="validation-error" *ngIf="telephone.invalid && telephone.touched"
+                                    style="color: red">This Field is Required.</div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="postal-code">Télécopieur</label>
+                                <input type="text" class="form-control" id="postal-code" name="telecopieur"
+                                    #telecopieur="ngModel" [(ngModel)]="siteservice.selectedSite.telecopieur">
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="company">courriel</label>
+                            <input type="text" class="form-control" id="company" name="Courriel" #Courriel="ngModel"
+                                [(ngModel)]="siteservice.selectedSite.courriel">
+
+                        </div>
+                        <div class="row ">
+                            <div class="offset-md-3 col-6 col-sm-4 col-md-2 ">
+                                <button type="submit" class="btn btn-block btn-primary">Sauvgarder</button>
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-2 ">
+                                <button type="button" class="btn btn-block btn-outline-primary"
+                                    (click)="resetForm(siteForm)">Annuler</button>
+                            </div>
+                             <!--
+                            <div class="col-6 col-sm-4 col-md-2 ">
+                                <button type="button" class="btn btn-block btn-dark">Supprimer</button>
+                            </div>-->
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <!---->
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

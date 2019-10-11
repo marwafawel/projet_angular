@@ -1,0 +1,318 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+
+            <strong>Fiche Conducteur</strong>
+
+
+
+        </div>
+        <div class="card-body">
+            <form class="conducteur-form" #conducteurform="ngForm" (ngSubmit)="onSubmit(conducteurform)">
+                <input type="hidden" name="conducteurId" [value]="driver.conducteurId">
+
+
+                <div class="row">
+
+                    <div class="form-group col-sm-3" style="margin-top: 3%">
+                        <img width="157" height="157" *ngIf="!image" src="assets/img/avatars/Profil1.PNG"
+                            class="img-responsive" alt="Responsive image">
+                        <img width="157" height="157" *ngIf="image" [src]="image" class="img-responsive"
+                            alt="Responsive image">
+                        <input type="file" accept="image/*" name="profile" (change)="onFileSelect($event)"
+                            class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Prenom">Prénom<span class="kv-reqd" style="color: red">*</span></label>
+                                    <input type="text" id="Prenom" class="form-control" name="prenom" #prenom="ngModel"
+                                        [(ngModel)]="driver.prenom" required>
+                                    <div class="validation-error" *ngIf="prenom.invalid && prenom.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nom">Nom<span class="kv-reqd " style="color: red">*</span></label>
+                                    <input type="text" id="nom" class="form-control" name="nom" #nom="ngModel"
+                                        [(ngModel)]="driver.nom" required>
+                                    <div class="validation-error" *ngIf="nom.invalid && nom.touched" style="color: red">
+                                        This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cin">CIN<span class="kv-reqd " style="color: red">*</span></label>
+                                    <input type="text" id="cin" class="form-control" name="cin" #cin="ngModel"
+                                        [(ngModel)]="driver.cin" required>
+                                    <div class="validation-error" *ngIf="cin.invalid && cin.touched" style="color: red">
+                                        This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nation1">Nationalité<span class="kv-reqd "
+                                            style="color: red">*</span></label>
+                                    <input type="text" id="nation1" class="form-control" name="nationalite"
+                                        #nationalite="ngModel" [(ngModel)]="driver.nationalite" required>
+                                    <div class="validation-error" *ngIf="nationalite.invalid && nationalite.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="sexe">Sexe<span class="kv-reqd " style="color: red">*</span></label>
+                                    <select class="form-control" id="sexe" class="form-control" name="sexe"
+                                        #sexe="ngModel" [(ngModel)]="driver.sexe" required>
+                                        <option value="Homme">Homme</option>
+                                        <option value="Femme ">Femme </option>
+                                    </select>
+                                    <div class="validation-error" *ngIf="sexe.invalid && sexe.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{driver.date_Naisance}}
+                                    <label for="date">Date de naissance<span class="kv-reqd "
+                                            style="color: red">*</span></label>
+                                    <input type="date" id="date" class="form-control" name="date_Naisance"
+                                        #date_Naisance="ngModel" [(ngModel)]="driver.date_Naisance" required>
+                                    <div class="validation-error" *ngIf="date_Naisance.invalid && date_Naisance.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Coordonnées</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                                color: #cccccc;
+                                background-color:#24618e;
+                                width: 100%;
+                                border: 0;
+                                float: left;
+                                margin: 0px;
+                                margin-top: 0%;
+                            margin-left: 1%;">
+
+                </div>
+                <div class="coordonnées">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="adresse">Adresse</label>
+                                <input type="text" id="adresse" class="form-control" name="adresse" #adresse="ngModel"
+                                    [(ngModel)]="driver.adresse">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="code">Code postal</label>
+                                <input type="text" id="code" class="form-control" name="codepostal"
+                                    #codepostal="ngModel" [(ngModel)]="driver.codepostal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ville">Ville</label>
+                                <input type="text" id="ville" class="form-control" name="ville" #ville="ngModel"
+                                    [(ngModel)]="driver.ville">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <input type="text" id="province" class="form-control" name="province"
+                                    #province="ngModel" [(ngModel)]="driver.province">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="contact"> Contact d'urgence<span class="kv-reqd"
+                                        style="color: red">*</span></label>
+                                <input type="text" id="contact" class="form-control" name="contact_Urgence"
+                                    #contact_Urgence="ngModel" [(ngModel)]="driver.contact_Urgence" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="cell">Cellulaire<span class="kv-reqd " style="color: red">*</span></label>
+                                <input type="text" id="cell" class="form-control" name="cellulaire"
+                                    #cellulaire="ngModel" [(ngModel)]="driver.cellulaire" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="text" id="phone" class="form-control" name="telephone" #telephone="ngModel"
+                                    [(ngModel)]="driver.telephone">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="tel">Tél urgence</label>
+                                <input type="text" id="tel" class="form-control" name="tel_Urgence"
+                                    #tel_Urgence="ngModel" [(ngModel)]="driver.tel_Urgence">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="mail">Courriel<span class="kv-reqd" style="color: red">*</span></label>
+                                <input type="email" id="mail" class="form-control" name="courriel" #courriel="ngModel"
+                                    [(ngModel)]="driver.courriel " required>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">+Ajouter</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                                              color: #cccccc;
+                                              background-color:#24618e;
+                                              width: 100%;
+                                              border: 0;
+                                              float: left;
+                                              margin: 0px;
+                                              margin-top: 0%;
+                                          margin-left: 1%;">
+
+                </div>
+
+
+                <!--  -->
+
+              <table class="table table-bordered table-sm">
+                  <thead>
+                      <tr class="text-center">
+                          <th>Nom site</th>
+                          <th>Date début</th>
+                          <th>Date fin</th>
+                          <th style="width:10%" class="text-center">
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+
+                      <tr>
+                          <td>
+                              <select name="siteId" class="form-control"
+                                  [(ngModel)]="conducteurSite.site">
+
+                                  <option *ngFor="let site of sites" [value]="site.siteId">{{site.nom_Site}}</option>
+                              </select>
+                          </td>
+                          <td>
+                              <input name="datedebut" type="date" class="form-control"
+                                  [(ngModel)]="conducteurSite.date_debut">
+
+                          </td>
+                          <td>
+
+                              <input name="datefin" class="form-control" type="date"
+                                  [(ngModel)]="conducteurSite.date_fin">
+
+
+                          </td>
+                          <td>
+
+                              <button type="button" class="btn btn-block btn-primary" style="margin-top: 2%"
+                                  (click)="addNewRow()"><i class="icon-plus"></i> Ajouter</button>
+
+
+                          </td>
+
+
+                      </tr>
+
+
+                      <tr *ngFor="let item of conducteurSites let i=index ">
+                          <td>{{ getSiteNameById(item.site) }}</td>
+                          <td> {{item.date_debut| date:'dd/MM/yyyy'}}</td>
+                          <td>{{item.date_fin| date:'dd/MM/yyyy'}}</td>
+                          <td class="text-center">
+                              <h5>
+                                 
+                               
+                                  <i class="fa fa-close delete-color" (click)="deleteRow(item)"></i>
+
+                                  <i class="fas fa-pencil-alt"></i>
+                              </h5>
+                          </td>
+                      </tr>
+
+                  </tbody>
+
+              </table>
+
+
+  <!--          -->
+
+
+
+
+
+
+
+
+
+                <div class="row " style="margin-top: 10%">
+
+                    <div class="offset-md-3 col-6 col-sm-4 col-md-2 ">
+
+                        <button type="submit" class="btn btn-block btn-primary">Sauvgarder</button> <br>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-outline-primary"
+                            (click)="resetForm(employeeForm)">Annuler</button>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-dark">Supprimer</button>
+
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+</div>

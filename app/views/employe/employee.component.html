@@ -1,0 +1,430 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+          
+            <strong>Fiche Utilisateur</strong>
+
+
+
+        </div>
+        <div class="card-body">
+            <form class="employee-form" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                <input type="hidden" name="employeeId" [value]="employeeservice.selectedEmployee.employeeId">
+
+
+                <div class="row">
+
+                    <div class="form-group col-sm-3" style="margin-top: 3%">
+                        <img width="157" height="157" *ngIf="!image" src="assets/img/avatars/Profil1.PNG"
+                            class="img-responsive" alt="Responsive image">
+                        <img width="157" height="157" *ngIf="image" [src]="image" class="img-responsive"
+                            alt="Responsive image">
+                        <input type="file" accept="image/*" name="profile" (change)="onFileSelect($event)"
+                            class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Prénom">Prénom<span class="kv-reqd" style="color: red">*</span></label>
+                                    <input type="text" id="Prénom" class="form-control" name="prenom" #prenom="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.prenom" required>
+                                    <div class="validation-error" *ngIf="prenom.invalid && prenom.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nom">Nom<span class="kv-reqd " style="color: red">*</span></label>
+                                    <input type="text" id="nom" class="form-control" name="nom" #nom="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.nom" required>
+                                    <div class="validation-error" *ngIf="nom.invalid && nom.touched" style="color: red">
+                                        This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cin">CIN<span class="kv-reqd " style="color: red">*</span></label>
+                                    <input type="text" id="cin" class="form-control" name="cin" #cin="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.cin" required>
+                                    <div class="validation-error" *ngIf="cin.invalid && cin.touched" style="color: red">
+                                        This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nation1">Nationalité<span class="kv-reqd "
+                                            style="color: red">*</span></label>
+                                    <input type="text" id="nation1" class="form-control" name="nationalite"
+                                        #nationalite="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.nationalite" required>
+                                    <div class="validation-error" *ngIf="nationalite.invalid && nationalite.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="sexe">Sexe<span class="kv-reqd " style="color: red">*</span></label>
+                                    <select class="form-control" id="sexe" class="form-control" name="sexe"
+                                        #sexe="ngModel" [(ngModel)]="employeeservice.selectedEmployee.sexe" required>
+                                        <option value="Homme">Homme</option>
+                                        <option value="Femme ">Femme </option>
+                                    </select>
+                                    <div class="validation-error" *ngIf="sexe.invalid && sexe.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    {{employeeservice.selectedEmployee.date_Naisance}}
+                                    <label for="date">Date de naissance<span class="kv-reqd "
+                                            style="color: red">*</span></label>
+                                    <input type="date" id="date" class="form-control" name="date_Naisance"
+                                        #date_Naisance="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.date_Naisance" required>
+                                    <div class="validation-error" *ngIf="date_Naisance.invalid && date_Naisance.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="userName">userName<span class="kv-reqd " style="color: red">*</span></label>
+                                    <input type="text" id="userName" class="form-control" name="userName"
+                                        #userName="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.userName" required>
+                                    <div class="validation-error" *ngIf="sexe.invalid && sexe.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                 
+                                    <label for="date">password<span class="kv-reqd "
+                                            style="color: red">*</span></label>
+                                    <input type="password" id="password" class="form-control" name="password"
+                                        #password="ngModel"
+                                        [(ngModel)]="employeeservice.selectedEmployee.password" required>
+                                    <div class="validation-error" *ngIf="date_Naisance.invalid && date_Naisance.touched"
+                                        style="color: red">This Field is Required.</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">Coordonnées</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                                  color: #cccccc;
+                                  background-color:#24618e;
+                                  width: 100%;
+                                  border: 0;
+                                  float: left;
+                                  margin: 0px;
+                                  margin-top: 0%;
+                              margin-left: 1%;">
+
+                </div>
+                <div class="coordonnées">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="adresse">Adresse</label>
+                                <input type="text" id="adresse" class="form-control" name="adresse" #adresse="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.adresse">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="code">Code postal</label>
+                                <input type="text" id="code" class="form-control" name="codepostal"
+                                    #codepostal="ngModel" [(ngModel)]="employeeservice.selectedEmployee.codepostal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ville">Ville</label>
+                                <input type="text" id="ville" class="form-control" name="ville" #ville="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.ville">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <input type="text" id="province" class="form-control" name="province"
+                                    #province="ngModel" [(ngModel)]="employeeservice.selectedEmployee.province">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="contact"> Contact d'urgence<span class="kv-reqd"
+                                        style="color: red">*</span></label>
+                                <input type="text" id="contact" class="form-control" name="contact_Urgence"
+                                    #contact_Urgence="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.contact_Urgence" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="cell">Cellulaire<span class="kv-reqd " style="color: red">*</span></label>
+                                <input type="text" id="cell" class="form-control" name="cellulaire"
+                                    #cellulaire="ngModel" [(ngModel)]="employeeservice.selectedEmployee.cellulaire"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="text" id="phone" class="form-control" name="telephone" #telephone="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.telephone">
+                            </div>
+                        </div>
+                        <div class="col-sm-3" style="margin-left: 5%">
+
+                            <div class="form-group">
+                                <label for="tel">Tél urgence</label>
+                                <input type="text" id="tel" class="form-control" name="tel_Urgence"
+                                    #tel_Urgence="ngModel" [(ngModel)]="employeeservice.selectedEmployee.tel_Urgence">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="mail">Courriel<span class="kv-reqd" style="color: red">*</span></label>
+                                <input type="email" id="mail" class="form-control" name="courriel" #courriel="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.courriel " required>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label for="note">Note<span class="kv-reqd" style="color: red">*</span></label>
+                                <input type="text" id="note" class="form-control" name="note" #note="ngModel"
+                                    [(ngModel)]="employeeservice.selectedEmployee.note " required>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!--
+                                                          <div class="form-group">
+                                                            <label for="statut">statut<span class="kv-reqd" style="color: red">*</span></label>
+                                                            <input  id="statut" class="form-control"  name="statut" #statut="ngModel" [(ngModel)]="employeeservice.selectedEmployee.statut "required>
+                                                          </div>
+-->
+
+                            <label for="statut">Role<span class="kv-reqd" style="color: red">*</span></label>
+                            <select class="form-control" id="statut" class="form-control" name="roleSpecific"
+                                [(ngModel)]="employeeservice.selectedEmployee.roleSpecific " required>
+                                
+
+                                <option value="superAdmin">superAdmin</option>
+                                <option value="principal ">principal </option>
+                                <option value="secondaire">secondaire </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="title">
+                        <h5 style="color:#24618e; margin-left: 2%;width: 100%">+Affectation</h5>
+                    </div>
+
+                    <hr style="height: 1px;
+                                                color: #cccccc;
+                                                background-color:#24618e;
+                                                width: 100%;
+                                                border: 0;
+                                                float: left;
+                                                margin: 0px;
+                                                margin-top: 0%;
+                                            margin-left: 1%;">
+
+                </div>
+
+
+                <!-- Affectation-->
+
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Nom site</th>
+                            <th>Statut</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th style="width:10%" class="text-center">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>
+                                <select name="siteId" class="form-control"
+                                    [(ngModel)]="employeeservice.selectedEmployee.employe_site.siteId">
+
+                                    <option *ngFor="let site of sites" [value]="site.siteId">{{site.nom_Site}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" name="statut"
+                                    [(ngModel)]="employeeservice.selectedEmployee.employe_site.statut">
+
+                                    <option value="Responsable">Responsable</option>
+                                    <option value="Conducteur">Conducteur</option>
+                                    <option value="Employé">Employé</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input name="datedebut" type="date" class="form-control"
+                                    [(ngModel)]="employeeservice.selectedEmployee.employe_site.date_debut">
+
+                            </td>
+                            <td>
+
+                                <input name="datefin" class="form-control" type="date"
+                                    [(ngModel)]="employeeservice.selectedEmployee.employe_site.date_fin">
+
+
+                            </td>
+                            <td>
+
+                                <button type="button" class="btn btn-block btn-primary" style="margin-top: 2%"
+                                    (click)="addNewRow()"><i class="icon-plus"></i> Ajouter</button>
+
+
+                            </td>
+
+
+                        </tr>
+
+
+                        <tr *ngFor="let item of list_employe_site let i=index ">
+                            <td>{{ getSiteNameById(item.siteId) }}</td>
+                            <td>{{item.statut}}</td>
+                            <td> {{item.date_debut| date:'dd/MM/yyyy'}}</td>
+                            <td>{{item.date_fin| date:'dd/MM/yyyy'}}</td>
+                            <td class="text-center">
+                                <h5>
+                                   
+                                  <!--  <i class="fa fa-pencil edit-color" (click)="selectProgresstion(i)"></i>-->
+                                    <i class="fa fa-close delete-color" (click)="deleteRow(item.idEmployee_Site)"></i>
+
+                                    <i class="fas fa-pencil-alt"></i>
+                                </h5>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Affectation -->
+
+
+
+
+
+                <div class="row " style="margin-top: 10%">
+
+                    <div class="offset-md-3 col-6 col-sm-4 col-md-2 ">
+
+                        <button type="submit" class="btn btn-block btn-primary">Sauvgarder</button> <br>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-outline-primary"
+                            (click)="resetForm(employeeForm)">Annuler</button>
+                    </div>
+                    <div class="col-6 col-sm-4 col-md-2 ">
+                        <button type="button" class="btn btn-block btn-dark">Supprimer</button>
+                        
+                    </div>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+</div>

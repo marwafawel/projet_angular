@@ -1,0 +1,102 @@
+<div class="animated fadeIn">
+  
+    
+  <div class="card">
+    <div  class="card-header" >
+
+
+
+      <div class="row" style="width: 100%;height: 50%;">
+          <mat-form-field style="margin-left: 30%;width: 30%" >
+
+             
+            <input placeholder="Rechercher"   matInput (keyup)="applyFilter($event.target.value)" >
+            
+          </mat-form-field>
+      </div>
+     
+</div>
+    <div class="card-body">
+       
+      <div class="row">
+                  
+            
+                 
+        <div class="example-container mat-elevation-z8"  style=" margin-left: 5%;width: 90% ">
+
+
+
+
+
+          
+
+         
+
+          <mat-table #Table [dataSource]="dataSource" matSort style="border: 1px solid #c2cfd6;border-collapse: collapse" >
+              <ng-container matColumnDef="actions">
+                  <mat-header-cell style="margin-left: 2%" *matHeaderCellDef > Actions </mat-header-cell>
+                  <mat-cell *matCellDef="let post" >
+                    
+                      <a  (click)="onDelete()" style="margin-left: 10%">
+                    <img src="assets/img/avatars/delete1.png" style="width: 8%;height: 8%"  >
+                      </a>
+
+                  </mat-cell>
+                  
+                </ng-container>
+              <!-- For ID -->
+              <ng-container matColumnDef="vehiculeId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Matricule </mat-header-cell>
+                  <mat-cell *matCellDef="let post">{{post.vehiculeId}}</mat-cell>
+              </ng-container>
+
+             
+              <ng-container matColumnDef="conducteurId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Nom Conducteur </mat-header-cell>
+                  <mat-cell *matCellDef="let post">  {{post.conducteurId}} </mat-cell>
+              </ng-container>
+              
+  
+             
+              <ng-container matColumnDef="date_debut">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> date_debut </mat-header-cell>
+                  <mat-cell *matCellDef="let post"> {{post.date_debut| date:'short'}} </mat-cell>
+              </ng-container>
+               
+               <ng-container matColumnDef="date_fin">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> date_fin </mat-header-cell>
+                <mat-cell *matCellDef="let post"> {{post.date_fin| date:'short'}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="userModification">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Usager </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{user.nom}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="dateModification">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+              <mat-cell *matCellDef="let post"> {{post.dateModification| date:'short'}} </mat-cell>
+          </ng-container>
+              
+           
+              
+            
+              <mat-header-row style="background-color: #eee" *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+  
+          <!-- To paginate between pages with search -->
+          <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+          </mat-paginator>
+      </div>
+  
+      
+                </div>
+
+
+               
+    </div>
+  
+</div>
+
+
+</div>

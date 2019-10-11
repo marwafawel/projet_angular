@@ -1,0 +1,112 @@
+<div class="animated fadeIn">
+  
+    
+    <div class="card">
+      <div  class="card-header" >
+
+
+
+        <div class="row" style="width: 100%;height: 50%;">
+            <mat-form-field style="margin-left: 30%;width: 30%" >
+
+               
+              <input placeholder="Rechercher"   matInput (keyup)="applyFilter($event.target.value)" >
+              
+            </mat-form-field>
+        </div>
+       
+</div>
+      <div class="card-body">
+         
+        <div class="row">
+                    
+             
+                   
+          <div class="example-container mat-elevation-z8" style="width: 100%">
+
+
+
+
+
+           
+  
+           
+
+            <mat-table #Table [dataSource]="dataSource" matSort style="border: 1px solid #c2cfd6;border-collapse: collapse">
+            <!--actions-->
+              <ng-container  matColumnDef="actions">
+                <mat-header-cell style="margin-left: 2%" *matHeaderCellDef style="font-style: gras ;font-size: 15px" > Actions </mat-header-cell>
+                <mat-cell style="margin-left: -2%" *matCellDef="let post" >
+                    <a  [routerLink]="['/vehicule/cards/',post.vehiculeId]"  (click)="populateForm(post)" style="margin-left: 15%">
+                    <img src="assets/img/avatars/sty1.jpg" style="width: 25%;height: 22%" >
+                    </a>
+                    <a  (click)="onDelete(post.vehiculeId)">
+                  <img src="assets/img/avatars/delete1.png" style="width: 24%;height: 20%"  >
+                    </a>
+
+                </mat-cell>
+                
+              </ng-container>
+                <!-- For ID -->
+                <ng-container matColumnDef="matricule">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Matricule </mat-header-cell>
+                    <mat-cell *matCellDef="let post" style="margin-left: 3%"> {{post.matricule}} </mat-cell>
+                </ng-container>
+  
+               
+                <ng-container matColumnDef="Type_vehicule">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Type Véhicule </mat-header-cell>
+                    <mat-cell *matCellDef="let post"> {{post.type_vehicule}} </mat-cell>
+                </ng-container>
+                
+    
+               
+                <ng-container matColumnDef="marque">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Marque </mat-header-cell>
+                    <mat-cell *matCellDef="let post"> {{post.marque}} </mat-cell>
+                </ng-container>
+                 
+                 <ng-container matColumnDef="modele">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Modéle </mat-header-cell>
+                  <mat-cell *matCellDef="let post"> {{post.modele}} </mat-cell>
+              </ng-container>
+                <ng-container matColumnDef="puissance">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Puissance </mat-header-cell>
+                  <mat-cell *matCellDef="let post"> {{post.puissance}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="userModification">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Usager </mat-header-cell>
+                <mat-cell *matCellDef="let post">  {{getUserNameById(post.userModification)}}  </mat-cell>
+              </ng-container>
+            
+              <ng-container matColumnDef="dateModification">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header style="font-style: gras ;font-size: 14px"> Date </mat-header-cell>
+                  <mat-cell *matCellDef="let post"> {{post.dateModification| date:'short'}} </mat-cell>
+                  </ng-container>
+                 
+                
+              
+                <mat-header-row style="background-color: #eee" *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+    
+            <!-- To paginate between pages with search -->
+            <mat-paginator  #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+        </div>
+    
+        
+                  </div>
+                  <div class="row" style="margin-top: 1% ; justify-content: center; align-items: center ;display: flex;">
+
+
+                      <div class=" col-sm-2 col-md-2 " style="margin-top: 1%">
+                        <button [routerLink]="['/vehicule/cards']" type="submit" class="btn btn-block btn-primary" ><i class="icon-plus"></i> Ajouter</button>
+                      </div>
+                    </div>
+      </div>
+    
+  </div>
+ 
+ 
+</div>
